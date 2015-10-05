@@ -5,6 +5,19 @@
 	<artifactId>AppiumTest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<jbehave.core.version>3.9.5</jbehave.core.version>
+		<jbehave.web.version>3.6-beta-2</jbehave.web.version>
+		<jbehave.site.version>3.1.1</jbehave.site.version>
+		<fluent.selenium.version>1.14.5</fluent.selenium.version>
+		<selenium.version>2.40.0</selenium.version>
+		<ignore.failures>true</ignore.failures>
+		<meta.filter></meta.filter>
+		<threads>1</threads>
+		<skip>false</skip>
+		<stories>**/FranqueadorStories.java</stories>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.appium</groupId>
@@ -12,6 +25,35 @@
 			<version>3.2.0</version>
 
 		</dependency>
+
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-core</artifactId>
+			<version>${jbehave.core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jbehave.site</groupId>
+			<artifactId>jbehave-site-resources</artifactId>
+			<version>${jbehave.site.version}</version>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.jbehave.web</groupId>
+			<artifactId>jbehave-web-selenium</artifactId>
+			<version>${jbehave.web.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jbehave</groupId>
+					<artifactId>jbehave-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-java</artifactId>
+				</exclusion>
+			</exclusions>
+			</dependency>
+
 	</dependencies>
 
 </project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="driverProvider" class="org.jbehave.web.selenium.FirefoxWebDriverProvider">
+	</bean>
+
+	<bean id="webDriverProvider" class="org.jbehave.web.selenium.PerStoryWebDriverSteps">
+		<constructor-arg ref="driverProvider" />
+	</bean>
+
+	<!-- <bean id="lifecycleSteps" class="com.jbehave.franqueador.steps.LifecycleSteps"> -->
+	<!-- <constructor-arg ref="driverProvider"/> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="journaledSteps" class="com.jbehave.franqueador.steps.JournaledStoriesSteps"> -->
+	<!-- <constructor-arg ref="driverProvider"/> -->
+	<!-- </bean> -->
+
+	<bean id="pageFactory" class="com.jbehave.franqueador.pages.PageFactory">
+		<constructor-arg ref="driverProvider" />
+	</bean>
+
+	<!-- <bean id="etsySteps" class="com.jbehave.franqueador.steps.EtsyDotComSteps"> -->
+	<!-- <constructor-arg ref="pageFactory"/> -->
+	<!-- </bean> -->
+
+	<bean id="loginSteps" class="com.jbehave.franqueador.steps.LoginSteps">
+		<constructor-arg ref="pageFactory" />
+	</bean>
+
+	<bean id="categorySteps" class="com.jbehave.franqueador.steps.CategorySteps">
+	<constructor-arg ref="pageFactory" />
+	</bean>
+
+	<bean id="actionsButtonsSteps" class="com.jbehave.franqueador.steps.ActionsButtonsSteps">
+	<constructor-arg ref="pageFactory" />
+	</bean>
+
+	<bean id="pageLogedSteps" class="com.jbehave.franqueador.steps.PageLogedSteps">
+	<constructor-arg ref="pageFactory" />
+	</bean>
+</beans>

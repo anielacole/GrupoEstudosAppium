@@ -1,11 +1,15 @@
 package com.eduardo.android.device;
 
+import io.appium.java_client.android.AndroidDriver;
+
 import java.io.IOException;
+import java.net.URL;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AndroidDevice {
@@ -26,7 +30,34 @@ public class AndroidDevice {
 	}
 	
 	public static void setupVM() throws ExecuteException, IOException, InterruptedException {		
-		DefaultExecutor executor = new DefaultExecutor();
+		
+		
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        DefaultExecutor executor = new DefaultExecutor();
+        DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+
+        CommandLine launchEmul = new CommandLine("C:/Program Files/Genymobile/Genymotion/player");
+        launchEmul.addArgument("--vm-name");
+        launchEmul.addArgument("\""+deviceName+"\"");
+        executor.setExitValue(1);
+        executor.execute(launchEmul, resultHandler);
+        Thread.sleep(40);
+
+        capabilities.setCapability("deviceName",deviceName);
+        capabilities.setCapability("platformVersion", "4.2.2");
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("app","C:/appium/TrianguloApp.apk");
+        
+        AndroidDriver<WebElement> driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+
+        
+        System.out.println("SetUp is successful and Appium Driver is launched successfully");
+		
+		
+		
+		/*DefaultExecutor executor = new DefaultExecutor();
         DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
         
 		CommandLine launchEmul = new CommandLine(vmLocation);
@@ -38,6 +69,6 @@ public class AndroidDevice {
         executor.execute(launchEmul, resultHandler);
         
 //        TODO: Wait for the Vm to set up
-        Thread.sleep(10000);
+        Thread.sleep(10000);*/
 	}
 }

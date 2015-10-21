@@ -16,7 +16,9 @@ public class MySteps {
 	
 	@When ("I fire the application $app")	
 	public void fireApp(@Named("app") String appName) {
+		System.out.println("starting to roll!");
 		AndroidTasks.fireDevice();
+		System.out.println("did I roll?");
 	}
 	
 	@Then ("I see nothing really happens")

@@ -2,5 +2,5 @@
 scenario: Wanted to check for working of my device.
 
 Given I have set up the device
-When I fire the application Triangulo
+When I fire the application TrianguloApp
 Then I see nothing really happens

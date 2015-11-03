@@ -14,7 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AndroidDevice {
 	
-	private final static String deviceName = "";
+	private final static String deviceName = "Google Galaxy Nexus - 4.2.2 - API 17 - 720x1280";
 	private final static String applicationLocation = "C:/appium/";
 	private final static String vmLocation = "C:/Program Files/Genymobile/Genymotion/player";
 
@@ -24,7 +24,7 @@ public class AndroidDevice {
 		capabilities.setCapability("deviceName", deviceName);
 		capabilities.setCapability("platformVersion", "4.2.2");
 		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("app", applicationLocation+appName);
+		capabilities.setCapability("app", applicationLocation+appName+".apk");
 		
 		return capabilities;
 	}

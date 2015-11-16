@@ -1,6 +1,6 @@
 
-scenario: Wanted to check for working of my device.
+scenario: Wanted to check for working device.
 
 Given I have set up the device
-When I fire the application TrianguloApp
-Then I see nothing really happens
+When I Fire up the app
+Then I see there are 3 buttons

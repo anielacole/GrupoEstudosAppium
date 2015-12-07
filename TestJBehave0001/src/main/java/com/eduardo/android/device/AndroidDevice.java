@@ -2,6 +2,7 @@ package com.eduardo.android.device;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
@@ -21,6 +22,10 @@ public class AndroidDevice {
 	private final String appPath = "C:/appium/apk/br.gov.sinesp.cidadao.apk";
 	private final String vmLocation = "C:/Program Files/Genymobile/Genymotion/player";
 	private int testResult = 0;
+	private AndroidDriver<WebElement> driver;
+	private WebElement botaoVeiculos;
+	private String locatorBotoesHome = "android.widget.ImageView"; 
+	
 
 	/**
 	 * Inform Appium about what system it's handling
@@ -58,23 +63,46 @@ public class AndroidDevice {
 		
         // get Webdriver Instance
         
-        AndroidDriver<WebElement> driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+       driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+        
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.className("android.widget.ImageView")));
     
         // didn't see me!
         
-        Thread.sleep(10000);
-                
-        int sized = driver.findElements(By.className("android.widget.ImageView")).size();        
-        System.out.println("INFO: lista de elementos encontrada "+sized);        
-        
-        // Atribuir resultado        
-        	testResult = sized;		
+        Thread.sleep(10000);        
+        	        	
+    	List<WebElement> botoes = driver.findElements(By.className("android.widget.ImageView"));
 	
+	}
+	
+	private int getNumeroBotoes(String locator) {
+		
+        int numeroBotoes = driver.findElements(By.className(locator)).size();        
+        System.out.println("INFO: lista de elementos encontrada "+numeroBotoes);
+   
+        return numeroBotoes;
+        
+	}
+	
+	public int getNumeroBotoesHome () {
+		System.out.println("Lista botoes" + getNumeroBotoes(locatorBotoesHome));
+		return getNumeroBotoes(locatorBotoesHome);
+		
 	}
 
 	public int getResultMessage() {		
 		return testResult;
+	}
+	
+	public void clickVeiculoButton() {
+		botaoVeiculos = driver.findElements(By.className("android.widget.ImageView")).get(2);
+		botaoVeiculos.click();
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

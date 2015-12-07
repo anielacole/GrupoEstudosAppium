@@ -15,7 +15,7 @@ import com.eduardo.android.device.AndroidDevice;
 
 public class MySteps {
 	
-	private final String ERROR_MESSAGE = "ERRO: não foi possível executar o teste.";
+	private final String ERROR_MESSAGE = "ERRO: nï¿½o foi possï¿½vel executar o teste.";
 	
 	private AndroidDevice android;
     
@@ -49,13 +49,38 @@ public class MySteps {
 			e.printStackTrace();
 		}
 		
+	}	
+	
+	@Then("I'm at the Sinesp app home")
+	@Given("I'm at the Sinesp app home")
+	public void imAtSinespHome() {
+		Assert.assertTrue(android.getNumeroBotoesHome() > 0);
 	}
 	
-	@Then ("I see there are $amount buttons")
+	@When ("I click in the Veiculos button")
+	public void clickVeiculoButton () {
+		android.clickVeiculoButton();
+	}
 	
+	@Then ("I see there are $amount buttons")	
 	public void validatenothing(@Named("amount") int howManyButtons) {		
-		Assert.assertEquals(android.getResultMessage(), howManyButtons);			
+		Assert.assertEquals(howManyButtons, android.getNumeroBotoesHome());
 	}
+	
+	
+	
+	
+	
+	
+	
+//	Given I'm at the Sinesp app home
+//	When I click in the Veï¿½culos button
+//	Then I see the button "checar situaï¿½ï¿½o"
+//	When I type the plate "icq5550"
+//	Then the editText1 field will contain "icq"
+//	And the editText2 field will contain "5550"
+//	When I click in the checar situaï¿½ï¿½o button
+//	Then I see the message "placa nï¿½o foi encontrada"
 	
 }
 

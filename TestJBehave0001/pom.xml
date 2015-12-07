@@ -11,6 +11,7 @@
 		<jbehave.core.version>4.0.4</jbehave.core.version>
 		<jbehave.site.version>3.3</jbehave.site.version>
 		<embeddables>**/*Stories.java</embeddables>
+		<excludeStories>**/*LoadGenymotion.story</excludeStories>
 	</properties>
 
 	<dependencies>

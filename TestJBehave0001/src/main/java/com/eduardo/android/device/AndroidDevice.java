@@ -95,8 +95,42 @@ public class AndroidDevice {
 	}
 	
 	public void clickVeiculoButton() {
-		botaoVeiculos = driver.findElements(By.className("android.widget.ImageView")).get(2);
+//		TODO precisamos clicar nos botões:
+//		http://stackoverflow.com/questions/22223814/appium-android-windows-driver-findelementby-name-is-not-working-consecut
+//		Exemplo de xpath: WebElement password = driver.findElement(By.xpath("//window[1]/scrollview[1]/secure[1]"));
+
+		
+		
+		//botaoVeiculos = driver.findElement(By.xpath("//*[@class='android.widget.FrameLayout']//*[@class='android.widget.LinearLayout']//*[@class='android.widget.FrameLayout']//*[@class='android.widget.RelativeLayout']//*[@class='android.widget.ImageView']"));	
+		//botaoVeiculos = driver.findElement(By.xpath("//*[@class='android.widget.FrameLayout']//*[@class='android.widget.LinearLayout']//*[@class='android.widget.FrameLayout']//*[@class='android.widget.RelativeLayout']//*[@class='android.widget.ImageView']"));
+	
+		botaoVeiculos = driver.findElements(By.className("android.widget.ImageView")).get(0);
 		botaoVeiculos.click();
+		System.out.println("element1");
+		
+		WebElement botaoVeiculos2 = driver.findElements(By.className("android.widget.ImageView")).get(1);
+		botaoVeiculos2.click();
+		System.out.println("element2");
+		
+		WebElement botaoVeiculos3 = driver.findElements(By.className("android.widget.ImageView")).get(2);
+		botaoVeiculos3.click();
+		System.out.println("element3");
+		
+		Integer botaoVeiculos4 = driver.findElements(By.className("android.widget.FrameLayout")).size();
+		System.out.println("botaoVeiculos4: " + botaoVeiculos4);
+		
+		Integer botaoVeiculos5 = driver.findElements(By.className("android.widget.LinearLayout")).size();
+		System.out.println("botaoVeiculos5: " + botaoVeiculos5);
+		
+		Integer botaoVeiculos6 = driver.findElements(By.className("android.widget.FrameLayout")).size();
+		System.out.println("botaoVeiculos6: " + botaoVeiculos6);
+		
+		Integer botaoVeiculos7 = driver.findElements(By.className("android.widget.RelativeLayout")).size();
+		System.out.println("botaoVeiculos7: " + botaoVeiculos7);
+		
+		Integer botaoVeiculos8 = driver.findElements(By.className("android.widget.ImageView")).size();
+		System.out.println("botaoVeiculos8: " + botaoVeiculos8);
+		
 		try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {

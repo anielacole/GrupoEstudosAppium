@@ -15,9 +15,11 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class Test002 {
 
-	static final String deviceName = "Google Galaxy Nexus - 4.2.2 - API 17 - 720x1280";
-
+	
     public static void main(String[] args) throws InterruptedException, ExecuteException, IOException {
+    	
+    	final String deviceName = "Google Galaxy Nexus - 4.2.2 - API 17 - 720x1280";
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 

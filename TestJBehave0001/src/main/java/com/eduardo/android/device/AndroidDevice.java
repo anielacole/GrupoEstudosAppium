@@ -9,6 +9,7 @@ import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -94,42 +95,46 @@ public class AndroidDevice {
 		return testResult;
 	}
 	
-	public void clickVeiculoButton() {
-//		TODO precisamos clicar nos botões:
-//		http://stackoverflow.com/questions/22223814/appium-android-windows-driver-findelementby-name-is-not-working-consecut
-//		Exemplo de xpath: WebElement password = driver.findElement(By.xpath("//window[1]/scrollview[1]/secure[1]"));
-
+	public void clickHelpButton() {
+//		
+		Dimension screenDim = driver.manage().window().getSize();
 		
+		System.out.println("tamanho horizontal:"+screenDim.getWidth());
+		System.out.println("tamanho vertical:"+screenDim.getHeight());
 		
-		//botaoVeiculos = driver.findElement(By.xpath("//*[@class='android.widget.FrameLayout']//*[@class='android.widget.LinearLayout']//*[@class='android.widget.FrameLayout']//*[@class='android.widget.RelativeLayout']//*[@class='android.widget.ImageView']"));	
-		//botaoVeiculos = driver.findElement(By.xpath("//*[@class='android.widget.FrameLayout']//*[@class='android.widget.LinearLayout']//*[@class='android.widget.FrameLayout']//*[@class='android.widget.RelativeLayout']//*[@class='android.widget.ImageView']"));
+		int x = (int)(0.5 * screenDim.getWidth());
+		int y = (int)(0.25 * screenDim.getHeight());
+		
+		driver.tap(1,x,y,10);
+		
+		System.out.println("cliquei em:"+x+" "+y+".");
+		
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
-		botaoVeiculos = driver.findElements(By.className("android.widget.ImageView")).get(0);
-		botaoVeiculos.click();
-		System.out.println("element1");
+	
+	
+	
+	
+	
+	public void clickVeiculoButton() {
+//		
+		Dimension screenDim = driver.manage().window().getSize();
 		
-		WebElement botaoVeiculos2 = driver.findElements(By.className("android.widget.ImageView")).get(1);
-		botaoVeiculos2.click();
-		System.out.println("element2");
+		System.out.println("tamanho horizontal:"+screenDim.getWidth());
+		System.out.println("tamanho vertical:"+screenDim.getHeight());
 		
-		WebElement botaoVeiculos3 = driver.findElements(By.className("android.widget.ImageView")).get(2);
-		botaoVeiculos3.click();
-		System.out.println("element3");
+		int x = (int)(0.76 * screenDim.getWidth());
+		int y = (int)(0.60 * screenDim.getHeight());
 		
-		Integer botaoVeiculos4 = driver.findElements(By.className("android.widget.FrameLayout")).size();
-		System.out.println("botaoVeiculos4: " + botaoVeiculos4);
+		driver.tap(1,x,y,10);
 		
-		Integer botaoVeiculos5 = driver.findElements(By.className("android.widget.LinearLayout")).size();
-		System.out.println("botaoVeiculos5: " + botaoVeiculos5);
-		
-		Integer botaoVeiculos6 = driver.findElements(By.className("android.widget.FrameLayout")).size();
-		System.out.println("botaoVeiculos6: " + botaoVeiculos6);
-		
-		Integer botaoVeiculos7 = driver.findElements(By.className("android.widget.RelativeLayout")).size();
-		System.out.println("botaoVeiculos7: " + botaoVeiculos7);
-		
-		Integer botaoVeiculos8 = driver.findElements(By.className("android.widget.ImageView")).size();
-		System.out.println("botaoVeiculos8: " + botaoVeiculos8);
+		System.out.println("cliquei em:"+x+" "+y+".");
 		
 		try {
 			Thread.sleep(7000);

@@ -9,15 +9,23 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
 
-import com.eduardo.android.device.AndroidDevice;
+import com.eduardo.apps.sinesp.PlateSearch;
+import com.eduardo.apps.sinesp.SinespHome;
+import com.eduardo.framework.device.AndroidDevice;
 
 
 
 public class MySteps {
 	
-	private final String ERROR_MESSAGE = "ERRO: n�o foi poss�vel executar o teste.";
+	private final String ERROR_MESSAGE = "ERRO: Não foi possível executar o teste";
+	
+	private final String 
 	
 	private AndroidDevice android;
+	
+	private PlateSearch SinespPlateSearch;
+	
+	private SinespHome HomeSinesp;
     
 	@Given("I have set up the device")
 	
@@ -67,8 +75,20 @@ public class MySteps {
 		Assert.assertEquals(howManyButtons, android.getNumeroBotoesHome());
 	}
 	
+	@Then("the field plate letters is shown")
+	public void validatePlateLetters() {
+		Assert.assertTrue(android.isPlateLettersPresent());
+	}
 	
+	@When("I type the plate $letters $numbers")
+	public void typePlate(@Named ("letters") String letters, @Named("numbers") String numbers) {
+		android.inputLetters(letters);
+	}
 	
+	@Then("the field contains $whatLetters $whatNumbers")
+	public void checkPlateType(@Named ("whatLetters") String leters, @Named("whatNumbers") String numbers) {
+		android.inputNumbers(numbers);
+	}
 	
 	
 	

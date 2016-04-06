@@ -1,4 +1,4 @@
-package com.eduardo.selenium;
+package com.eduardo.framework.selenium;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

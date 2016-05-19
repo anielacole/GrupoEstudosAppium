@@ -36,7 +36,7 @@ public class Test002 {
         capabilities.setCapability("deviceName",deviceName);
         capabilities.setCapability("platformVersion", "4.2.2");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("app","C:/appium/TrianguloApp.apk");
+        capabilities.setCapability("app","C:/appium/apk/TrianguloApp.apk");
 
         AndroidDriver<WebElement> driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
         System.out.println("SetUp is successful and Appium Driver is launched successfully");

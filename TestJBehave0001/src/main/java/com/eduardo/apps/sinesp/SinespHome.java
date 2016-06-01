@@ -18,6 +18,7 @@ public class SinespHome extends AbstractPage{
 	
 	private int getNumeroBotoes(String locator) {
 		
+		@SuppressWarnings("unused")
 		List<WebElement> botoes = getDriver().findElements(By.className("android.widget.ImageView"));
 		
         int numeroBotoes = getDriver().findElements(By.className(locator)).size();        

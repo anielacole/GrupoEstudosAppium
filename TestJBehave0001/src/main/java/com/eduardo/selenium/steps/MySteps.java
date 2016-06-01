@@ -1,8 +1,5 @@
 package com.eduardo.selenium.steps;
 
-import java.io.IOException;
-
-import org.apache.commons.exec.ExecuteException;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -12,6 +9,7 @@ import org.junit.Assert;
 import com.eduardo.apps.sinesp.PlateSearch;
 import com.eduardo.apps.sinesp.SinespHome;
 import com.eduardo.framework.device.AndroidDevice;
+import com.eduardo.framework.selenium.AbstractPage;
 
 
 
@@ -19,75 +17,52 @@ public class MySteps {
 	
 	private final String ERROR_MESSAGE = "ERRO: Não foi possível executar o teste";
 	
-	private final String 
-	
 	private AndroidDevice android;
 	
 	private PlateSearch SinespPlateSearch;
 	
 	private SinespHome HomeSinesp;
     
-	@Given("I have set up the device")
-	
+	@Given("I have set up the device")	
 	public void deviceSetup() {	
-		
-		android = new AndroidDevice();	
+		// a criacao do driver e inicializao da vm agora fica na pagina
+		// se faz sentido é uma questao a ser vista		
 	}
 	
 	@When ("I Fire up the app")
-	
-	public void fireApp() {		
-		
-		// Executar comandos android		
-		try {			
-			
-			android.runTest();		
-		}
-		catch (ExecuteException e) {
-			
-			System.out.println(ERROR_MESSAGE);
-			e.printStackTrace();			
-		} 
-		catch (IOException e) {
-			System.out.println(ERROR_MESSAGE);
-			e.printStackTrace();
-		} 
-		catch (InterruptedException e) {
-			System.out.println(ERROR_MESSAGE);
-			e.printStackTrace();
-		}
-		
+	public void fireApp() {
+		AbstractPage.initDriver();
 	}	
 	
 	@Then("I'm at the Sinesp app home")
 	@Given("I'm at the Sinesp app home")
 	public void imAtSinespHome() {
-		Assert.assertTrue(android.getNumeroBotoesHome() > 0);
+		Assert.assertTrue(HomeSinesp.getNumeroBotoesHome() > 0);
 	}
 	
 	@When ("I click in the Veiculos button")
 	public void clickVeiculoButton () {
-		android.clickVeiculoButton();
+		HomeSinesp.clickVeiculoButton();
 	}
 	
 	@Then ("I see there are $amount buttons")	
 	public void validatenothing(@Named("amount") int howManyButtons) {		
-		Assert.assertEquals(howManyButtons, android.getNumeroBotoesHome());
+		Assert.assertEquals(howManyButtons, HomeSinesp.getNumeroBotoesHome());
 	}
 	
 	@Then("the field plate letters is shown")
 	public void validatePlateLetters() {
-		Assert.assertTrue(android.isPlateLettersPresent());
+		Assert.assertTrue(SinespPlateSearch.isPlateLettersPresent());
 	}
 	
 	@When("I type the plate $letters $numbers")
 	public void typePlate(@Named ("letters") String letters, @Named("numbers") String numbers) {
-		android.inputLetters(letters);
+		SinespPlateSearch.inputLetters(letters);
 	}
 	
 	@Then("the field contains $whatLetters $whatNumbers")
 	public void checkPlateType(@Named ("whatLetters") String leters, @Named("whatNumbers") String numbers) {
-		android.inputNumbers(numbers);
+		SinespPlateSearch.inputNumbers(numbers);
 	}
 	
 	

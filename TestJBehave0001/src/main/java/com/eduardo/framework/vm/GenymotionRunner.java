@@ -7,12 +7,11 @@ import org.apache.commons.exec.DefaultExecutor;
 public class GenymotionRunner {
 	
 	private String deviceName;
-	private String vmLocation = "C:/Program Files/Genymobile/Genymotion/player";
+	private String vmLocation;
 
-	public GenymotionRunner(String deviceName, String VMLocation) {
+	public GenymotionRunner(String deviceName, String VmLocation) {
 		setDeviceName(deviceName);
-		vmLocation = VMLocation;
-		init();
+		setVmLocation(VmLocation);		
 	}
 	
 	public String getDeviceName() {
@@ -26,10 +25,11 @@ public class GenymotionRunner {
 		this.vmLocation = vmLocation;
 	}
 	
-	private void init() {
+	public void init() {
 		
 		try {
 			DefaultExecutor executor = new DefaultExecutor();
+			@SuppressWarnings("unused")
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 
 			CommandLine launchEmul = new CommandLine(vmLocation);

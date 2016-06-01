@@ -11,16 +11,16 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class AbstractPage {
 
-	private AndroidDevice android;
-	private final String app = "C:/appium/apk/br.gov.sinesp.cidadao.apk";
-	private final String Device = "Google Galaxy Nexus - 4.2.2 - API 17 - 720x1280";	
+	private static AndroidDevice android;
+	private final static String app = "C:/appium/apk/br.gov.sinesp.cidadao.apk";
+	private final static String Device = "Google Galaxy Nexus - 4.2.2 - API 17 - 720x1280";	
 
 	public AbstractPage() {
 		
 		initDriver();
 	}
 
-	private void initDriver() {
+	public static void initDriver() {
 
 		try {
 

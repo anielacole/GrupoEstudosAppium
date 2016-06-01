@@ -9,5 +9,5 @@ Scenario: looking at the check plate screen
 Given I'm at the Sinesp app home
 When I click in the Veiculos button
 Then the field plate letters is shown
-When I type the plate ipx 3394
-Then the field contains ipx 3394
+When I type the plate ipx 3499
+Then the field contains ipx 3499

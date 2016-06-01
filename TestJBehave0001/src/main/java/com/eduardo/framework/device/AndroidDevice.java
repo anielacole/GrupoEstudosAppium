@@ -3,9 +3,6 @@ package com.eduardo.framework.device;
 import java.io.IOException;
 import java.net.URL;
 
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecuteResultHandler;
-import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import com.eduardo.framework.vm.GenymotionRunner;
 
 import io.appium.java_client.android.AndroidDriver;
+
 
 public class AndroidDevice {
 
@@ -23,25 +21,15 @@ public class AndroidDevice {
 
 	public AndroidDevice(String appPath, String deviceName) throws ExecuteException, IOException, InterruptedException {
 		genny = new GenymotionRunner(deviceName, RunContext.GenymotionVMLocation);
+		genny.init();
 		this.appPath = appPath;
-		AndroidDevice.deviceName = deviceName;
-		
+		AndroidDevice.deviceName = deviceName;		
 		runApp();
-	}
-	
-	private void setPath(String path) {
-		appPath = path;		
-	}
+	}	
 	
 	public void setDeviceName(String name) {
 		AndroidDevice.deviceName = name;
-	}
-	
-	public void setVMLocation(String aLocation) {
-		this.vmLocation = aLocation;
-	}
-	
-	
+	}	
 
 	/**
 	 * 
@@ -72,11 +60,13 @@ public class AndroidDevice {
 
 		// Mobile devices have desired capabilities just like browsers do
 		DesiredCapabilities capabilities = getConfiguredCapabilities();
-		/*	DefaultExecutor executor = new DefaultExecutor();
-		DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+		//	DefaultExecutor executor = new DefaultExecutor();
+		//DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 
 		// Launch VM
-		CommandLine launchEmul = new CommandLine(vmLocation);
+		genny.init();
+		
+		/*CommandLine launchEmul = new CommandLine(vmLocation);
 		launchEmul.addArgument("--vm-name");
 		launchEmul.addArgument("\"" + deviceName + "\"");
 		executor.setExitValue(1);
